@@ -18,5 +18,5 @@ func main() {
 	e, err := envelope.New("demo-1", envelope.Telemetry, *topic, "local-node", map[string]any{"status": "online"})
 	if err != nil { log.Fatal(err) }
 	if err := b.Publish(context.Background(), e); err != nil { log.Fatal(err) }
-	b, _ := json.MarshalIndent(<-ch, "", "  "); fmt.Println(string(b))
+	out, _ := json.MarshalIndent(<-ch, "", "  "); fmt.Println(string(out))
 }
