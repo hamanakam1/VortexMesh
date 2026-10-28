@@ -15,6 +15,8 @@ The first vertical slice covers the protocol envelope and an in-process concurre
 - TLS 1.3 with required, verified client certificates;
 - bounded length-prefixed stream framing to prevent oversized messages;
 - transport handler callbacks that receive only validated envelopes.
+- bounded worker-pool routing with accepted, delivered, and dropped metrics;
+- cancellation-aware ingress when the queue is full.
 
 Run it with:
 
@@ -29,7 +31,7 @@ Each phase will add one production concern while keeping the previous interfaces
 
 1. Envelope schema and validation (implemented)
 2. QUIC transport with mTLS (transport boundary implemented; dependency download and live certificate acceptance remain to be exercised)
-3. Concurrent pub/sub routing (implemented in-process)
+3. Concurrent pub/sub routing (implemented with bounded worker pool and metrics)
 4. SQLite-backed offline WAL
 5. Heartbeat and vector-clock reconciliation
 6. mDNS/gossip peer discovery
