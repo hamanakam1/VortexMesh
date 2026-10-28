@@ -70,6 +70,7 @@ The first vertical slice covers the protocol envelope and an in-process concurre
 - cancellation-aware ingress when the queue is full.
 - SQLite WAL persistence with ordered pending reads and idempotent message IDs;
 - explicit delivery acknowledgment for replay after network recovery.
+- heartbeat-driven connection states and deterministic vector-clock reconciliation plans.
 
 Run it with:
 
@@ -88,7 +89,7 @@ Each phase will add one production concern while keeping the previous interfaces
 2. QUIC transport with mTLS (transport boundary implemented; dependency download and live certificate acceptance remain to be exercised)
 3. Concurrent pub/sub routing (implemented with bounded worker pool and metrics)
 4. SQLite-backed offline WAL (implemented in `internal/wal`)
-5. Heartbeat and vector-clock reconciliation
+5. Heartbeat and vector-clock reconciliation (implemented in `internal/reconcile`)
 6. mDNS/gossip peer discovery
 7. RBAC, topic ACLs, and token verification
 8. Partition, loss, and latency chaos tests
