@@ -3,3 +3,5 @@ module github.com/hamanakam1/vortexmesh
 go 1.23
 
 require github.com/quic-go/quic-go v0.48.2
+
+require modernc.org/sqlite v1.30.2
