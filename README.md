@@ -4,13 +4,17 @@ VortexMesh is a learning-oriented distributed edge-to-cloud event mesh in Go. It
 
 ## Current implementation
 
-The first vertical slice covers the protocol envelope and an in-process concurrent pub/sub broker:
+The first vertical slice covers the protocol envelope and an in-process concurrent pub/sub broker. Phase 2 now adds a QUIC transport boundary:
 
 - versioned JSON envelopes for task requests, telemetry heartbeats, and state sync;
 - strict validation before serialization or publication;
 - topic subscriptions with buffered channels;
 - context-aware publishing for backpressure and cancellation;
 - tests that demonstrate the basic message flow.
+- QUIC listener lifecycle with context cancellation;
+- TLS 1.3 with required, verified client certificates;
+- bounded length-prefixed stream framing to prevent oversized messages;
+- transport handler callbacks that receive only validated envelopes.
 
 Run it with:
 
@@ -24,7 +28,7 @@ go run ./cmd/vortexmesh -topic telemetry
 Each phase will add one production concern while keeping the previous interfaces testable:
 
 1. Envelope schema and validation (implemented)
-2. QUIC transport with mTLS
+2. QUIC transport with mTLS (transport boundary implemented; dependency download and live certificate acceptance remain to be exercised)
 3. Concurrent pub/sub routing (implemented in-process)
 4. SQLite-backed offline WAL
 5. Heartbeat and vector-clock reconciliation
