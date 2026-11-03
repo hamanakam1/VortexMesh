@@ -19,13 +19,17 @@ import (
 	"github.com/hamanakam1/vortexmesh/internal/envelope"
 )
 
-const banner = `
-__     __         _            __  __           _
-\ \   / /__  _ __| |_ _____  _|  \/  | ___  ___| |__
- \ \ / / _ \| '__| __/ _ \ \/ / |\/| |/ _ \/ __| '_ \
-  \ V / (_) | |  | ||  __/>  <| |  | |  __/\__ \ | | |
-   \_/ \___/|_|   \__\___/_/\_\_|  |_|\___||___/_| |_|
-     edge-to-cloud event mesh · validated envelopes · bounded routing
+// asciiBanner is the ANSI Shadow rendering of "VortexMesh" (generated with
+// pyfiglet). It is box-drawing art, not ASCII, so every cell is a single
+// monospace column and the letters stay separated even in narrow terminals.
+const asciiBanner = `
+██╗   ██╗ ██████╗ ██████╗ ████████╗███████╗██╗  ██╗███╗   ███╗███████╗███████╗
+██║   ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝████╗ ████║██╔════╝██╔════╝
+██║   ██║██║   ██║██████╔╝   ██║   █████╗   ╚███╔╝ ██╔████╔██║█████╗  ███████╗
+╚██╗ ██╔╝██║   ██║██╔══██╗   ██║   ██╔══╝   ██╔██╗ ██║╚██╔╝██║██╔══╝  ╚════██║
+ ╚████╔╝ ╚██████╔╝██║  ██║   ██║   ███████╗██╔╝ ██╗██║ ╚═╝ ██║███████╗███████║
+  ╚═══╝   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
+    edge-to-cloud event mesh · validated envelopes · bounded routing
 `
 
 func main() {
@@ -41,7 +45,7 @@ func main() {
 }
 
 func run(ctx context.Context, out io.Writer, topic string) error {
-	fmt.Fprint(out, banner)
+	fmt.Fprint(out, asciiBanner)
 
 	b := broker.New(16)
 	defer b.Close()
