@@ -112,7 +112,7 @@ func (s *Server) Serve(ctx context.Context) error {
 // listener's error.
 func (s *Server) Close() error { return s.listener.Close() }
 
-func (s *Server) serveConnection(ctx context.Context, conn quic.Connection) {
+func (s *Server) serveConnection(ctx context.Context, conn *quic.Conn) {
 	defer func() { _ = conn.CloseWithError(0, "") }()
 	for {
 		stream, err := conn.AcceptStream(ctx)
@@ -123,7 +123,7 @@ func (s *Server) serveConnection(ctx context.Context, conn quic.Connection) {
 	}
 }
 
-func (s *Server) serveStream(ctx context.Context, stream quic.Stream) {
+func (s *Server) serveStream(ctx context.Context, stream *quic.Stream) {
 	defer func() { _ = stream.Close() }()
 
 	msg, err := ReadEnvelope(stream)
@@ -137,7 +137,7 @@ func (s *Server) serveStream(ctx context.Context, stream quic.Stream) {
 }
 
 // Dial opens a QUIC connection to addr using the given client TLS config.
-func Dial(ctx context.Context, addr string, tlsConfig *tls.Config) (quic.Connection, error) {
+func Dial(ctx context.Context, addr string, tlsConfig *tls.Config) (*quic.Conn, error) {
 	return quic.DialAddr(ctx, addr, tlsConfig, &quic.Config{
 		MaxIdleTimeout:  idleTimeout,
 		KeepAlivePeriod: idleTimeout / 3,

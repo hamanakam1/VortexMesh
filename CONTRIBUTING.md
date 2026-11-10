@@ -9,7 +9,7 @@ the bar for a change is "can a reader follow it without extra context?"
 make check      # tidy, gofmt check, vet, build, test -race
 ```
 
-That is exactly what CI runs on Go 1.23 and the latest stable release. If
+That is exactly what CI runs on Go 1.26 and the latest stable release. If
 `make check` passes locally, CI should pass too.
 
 ## Ground rules

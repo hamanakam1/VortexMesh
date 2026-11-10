@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="https://github.com/hamanakam1/VortexMesh/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/hamanakam1/VortexMesh/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="Go version" src="https://img.shields.io/badge/go-1.23%2B-00ADD8?logo=go&logoColor=white">
+  <img alt="Go version" src="https://img.shields.io/badge/go-1.26%2B-00ADD8?logo=go&logoColor=white">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <a href="https://github.com/hamanakam1/VortexMesh/releases"><img alt="Releases" src="https://img.shields.io/github/v/release/hamanakam1/VortexMesh"></a>
 </p>
@@ -35,7 +35,7 @@ claim in this README is backed by a test you can run.
 
 ## Quick start
 
-Requires Go 1.23 or newer. There is no cgo dependency; SQLite is the pure-Go
+Requires Go 1.26 or newer. There is no cgo dependency; SQLite is the pure-Go
 `modernc.org/sqlite` driver, so cross-compilation works out of the box.
 
 ```sh
